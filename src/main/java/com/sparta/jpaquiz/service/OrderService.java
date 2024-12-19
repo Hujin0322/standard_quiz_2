@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@Transactional
 public class OrderService {
 
     private final OrderRepository orderRepository;
@@ -33,7 +34,6 @@ public class OrderService {
      *
      * @param orderId 주문 ID 입니다.
      * @param status  주문의 상태 입니다.
-     * @return repository.save 를 사용하지 않고 영속성 컨텍스트의 Dirty Checking 을 이용하여 엔티티를 저장합니다.
      */
 
 //     HINT:  @Transactional
@@ -42,7 +42,6 @@ public class OrderService {
         Order order = orderRepository.findById(orderId)
                 .orElseThrow(() -> new IllegalArgumentException("Order not found"));
         order.setStatus(status);
-        orderRepository.save(order); // 이부분을 삭제 할 것!
     }
 
     /**
