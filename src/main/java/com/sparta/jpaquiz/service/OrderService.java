@@ -19,10 +19,10 @@ public class OrderService {
         this.orderRepository = orderRepository;
     }
 
-    public Order createOrder(OrderDto orderDto) {
+    public void createOrder(OrderDto orderDto) {
         Order order = new Order();
-        order.setOrderNumberFromOrderDto(orderDto);
-        return orderRepository.save(order);
+        order.setOrderNumber(orderDto.getOrderNumber());
+        orderRepository.save(order);
     }
 
     /**
@@ -54,8 +54,10 @@ public class OrderService {
      * @return JPA 의 {@link Page} 클래스를 사용하여 페이지네이션을 적용한 {@link Order}객체를 리턴합니다. <br/>
      */
 
+    @Transactional(readOnly = true)
     public Page<Order> getAllOrders(Pageable pageable) {
-        return (Page<Order>) orderRepository.findAll(); // 모든 데이터를 불러오는 비효율적인 메서드
+        return orderRepository.findAll(pageable); // 모든 데이터를 불러오는 비효율적인 메서드
     }
+
 }
 
