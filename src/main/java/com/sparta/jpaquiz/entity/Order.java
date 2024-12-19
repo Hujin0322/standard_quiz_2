@@ -44,18 +44,12 @@ public class Order {
         this.status = "PENDING";
     }
 
-    /**
-     * TODO 5: Entity 가 Dto 에 의존하는 '의존성 역전 원칙 위반'을 수정
-     * <hr>
-     * 현재 고수준 모듈인 Entity 가 저수준 모듈인 {@link OrderDto} 에 영향을 받는 구조로 설계되어 있습니다.<br/>
-     * Layered Architecture 의 계층에 따라 고수준 모듈을 보호하는 설계로 변경해주세요!<br/>
-     * <a href="https://github.com/user-attachments/assets/c71a5429-0481-49d0-a125-95f10f27db16">HINT: 계층 분리 참고 자료</a>
-     *
-     * @param orderDto {@link OrderDto} 주문 생성 요청 객체 입니다.
-     * @return 고수준 모듈의 Entity 가 저수준 모듈의 수정에 영향이 없도록 변경합니다.
-     */
-    public void setOrderNumberFromOrderDto(OrderDto orderDto) {
-        this.orderNumber = orderDto.getOrderNumber();
+
+     // TODO 5: Entity 가 Dto 에 의존하는 '의존성 역전 원칙 위반'을 수정
+
+    public void setOrderNumber(String orderNumber) {
+        this.orderNumber = orderNumber;
     }
+
 }
 
